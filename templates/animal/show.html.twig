@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h2>{{ animal.nom }}</h2>
+        <div class="content">
+            <img src="{{ animal.photo }}" alt="animal">
+            <p>{{ animal.type }}</p>
+            <hr>
+            <p>{{ animal.description }}</p>
+        </div>
+    </div>
+
+{% endblock %}
