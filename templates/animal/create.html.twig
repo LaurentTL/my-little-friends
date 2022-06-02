@@ -5,6 +5,14 @@
 {% block body %}
 
     <h1>Creation</h1>
-    {{ form(formAnimal) }}
+    <div class="mt-10 max-w-xl mx-auto">
+        {{ form_start(formAnimal) }}
+            {{ form_row(formAnimal.Nom, {'attr': {'placeholder': 'Name'}} )}}
+            {{ form_row(formAnimal.Type, {'attr': {'placeholder': 'Type'}} )}}
+            {{ form_row(formAnimal.Description, {'attr': {'placeholder': 'Description'}} )}}
+            {{ form_row(formAnimal.Photo, {'attr': {'placeholder': 'Photo'}} )}}
+            <button type="Submit" class="inline-block w-full bg-indigo-500 hover:bg-indigo-600 text-white rounded shadow p-4">Send</button>
+        {{ form_end(formAnimal) }}
+    </div>
 
 {% endblock %}

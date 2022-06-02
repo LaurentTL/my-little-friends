@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +36,14 @@ class AnimalController extends AbstractController
             ->add('Description')
             ->add('Photo')
             ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $animal = $form->getdata();
+            var_dump($animal->getId());
+            return $this->redirectToRoute('animal_show', ['id' => $animal->getId()]);
+        }
 
         return $this->render('animal/create.html.twig', [
             'formAnimal' => $form->createView()
