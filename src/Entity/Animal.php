@@ -28,9 +28,12 @@ class Animal
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank]
-    // #[Assert\Regex('(?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?
-    // ')]
+    #[Assert\Regex('/.*jpg|gif|png$/')]
     private $photo;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'animals')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
     public function getId(): ?int
     {
@@ -81,6 +84,18 @@ class Animal
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
